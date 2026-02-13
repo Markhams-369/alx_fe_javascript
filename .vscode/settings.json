@@ -1,0 +1,9 @@
+{
+    "terminal.integrated.suggest.suggestOnTriggerCharacters": true,
+    "editor.tabCompletion": "on",
+    "html-css-class-completion.enableEmmetSupport": true,
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "yaml.suggest.parentSkeletonSelectedFirst": true,
+    "liveServer.settings.CustomBrowser": "chrome",
+    "liveServer.settings.port": 0
+}
