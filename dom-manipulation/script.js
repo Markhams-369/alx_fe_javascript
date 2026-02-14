@@ -200,7 +200,7 @@ async function pushQuotesToServer(newQuotes) {
   }
 }
 
-async function syncWithServer() {
+async function syncQuotes() {
   syncStatus.textContent = "Syncing with server...";
   try {
     const serverQuotes = await fetchQuotesFromServer();
@@ -229,8 +229,8 @@ async function syncWithServer() {
   }
 }
 
-if (syncNowBtn) syncNowBtn.addEventListener("click", syncWithServer);
-setInterval(syncWithServer, 30000);
+if (syncNowBtn) syncNowBtn.addEventListener("click", syncQuotes);
+setInterval(syncQuotes, 30000);
 
 // --- Initialize App ---
 loadQuotes();
