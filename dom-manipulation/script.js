@@ -217,9 +217,9 @@ async function syncQuotes() {
       saveQuotes();
       populateCategories();
       filterQuotes();
-      syncStatus.textContent = "Server updates applied (server wins)";
-      notification.textContent = "New server quotes added!";
-      setTimeout(() => notification.textContent = "", 3000);
+      alert("Quotes synced with server!");
+            syncStatus.textContent = "Server updates applied";
+
     } else {
       syncStatus.textContent = "Already up to date";
     }
