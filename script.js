@@ -61,10 +61,10 @@ function filterQuotes() {
     if (selectedCategory !== "all") {
         filteredQuotes = quotes.filter(
             quote => quote.category === selectedCategory
-  );
+        );
     }
 
-     displayQuotes(filteredQuotes);
+    displayQuotes(filteredQuotes);
 }
 
 categoryFilter.addEventListener("change", filterQuotes);
@@ -73,7 +73,7 @@ categoryFilter.addEventListener("change", filterQuotes);
 
 function displayQuotes(quotesToDisplay) {
     quoteDisplay.innerHTML = "";
-     
+
     if (quotesToDisplay.length === 0) {
         quoteDisplay.textContent = "No quotes found for this category.";
         return;
@@ -97,12 +97,12 @@ function showRandomQuote() {
     const quote = quotes[randomIndex];
 
     quoteDisplay.innerHTML = `
-       <p>"${quote.text}"</p>
-       <small>Category: ${quote.category}</small>
-       `;
+        <p>"${quote.text}"</p>
+        <small>Category: ${quote.category}</small>
+        `;
 
-       // Save last viewed quote in sessionStorage
-       sessionStorage.setItem("lastQuote", JSON.stringify(quote));
+    // Save last viewed quote in sessionStorage
+    sessionStorage.setItem("lastQuote", JSON.stringify(quote));
 }
 
 newQuoteBtn.addEventListener('click', showRandomQuote);
@@ -151,15 +151,16 @@ function addQuote() {
     }
 
     quotes.push({ text: textInput, category: categoryInput });
-     saveQuotes();
-     populateCategories();
-     filterQuotes();
+    saveQuotes();
+    populateCategories();
+    filterQuotes();
 
-     document.getElementById("newQuoteText").value = "";
-     document.getElementById("newQuoteCategory").value = "";
+    document.getElementById("newQuoteText").value = "";
+    document.getElementById("newQuoteCategory").value = "";
 
 
-     alert("Quote added successfully!");}
+    alert("Quote added successfully!");
+}
 
 createAddQuoteForm();
 
@@ -186,7 +187,7 @@ exportBtn.addEventListener("click", exportQuotes);
 function importFromJSONFile(event) {
     const fileReader = new FileReader();
 
-    fileReader.onload = function(event) {
+    fileReader.onload = function (event) {
         const importedQuotes = JSON.parse(event.target.result);
 
         quotes.push(...importedQuotes);
@@ -212,43 +213,43 @@ const syncStatus = document.getElementById("syncStatus");
 const syncNowBTn = document.getElementById("syncNow");
 
 function fetchServerQuotes() {
-   return fetch(SERVER_URL)
-    .then(response => response.json())
-    .then(data => {
-        // convert fake data to quote format
-        return data.slice(0, 5).map(item => ({
-            text: item.title,
-            category: "Server"
-        }));
-    });
+    return fetch(SERVER_URL)
+        .then(response => response.json())
+        .then(data => {
+            // convert fake data to quote format
+            return data.slice(0, 5).map(item => ({
+                text: item.title,
+                category: "Server"
+            }));
+        });
 }
 function syncWithServer() {
     syncStatus.textContent = "Syncing with server...";
 
-  fetchServerQuotes().then(serverQuotes => {
-    let updated = false;
+    fetchServerQuotes().then(serverQuotes => {
+        let updated = false;
 
-    serverQuotes.forEach(serverQuote => {
-      const exists = quotes.some(
-        localQuote => localQuote.text === serverQuote.text
-      );
+        serverQuotes.forEach(serverQuote => {
+            const exists = quotes.some(
+                localQuote => localQuote.text === serverQuote.text
+            );
 
-      if (!exists) {
-        quotes.push(serverQuote);
-        updated = true;
-      }
+            if (!exists) {
+                quotes.push(serverQuote);
+                updated = true;
+            }
+        });
+
+        if (updated) {
+            saveQuotes();
+            populateCategories();
+            filterQuotes();
+            syncStatus.textContent = "Server updates applied (server wins)";
+            alert("New server quotes were added. Conflicts resolved.");
+        } else {
+            syncStatus.textContent = "Already up to date";
+        }
     });
-
-    if (updated) {
-      saveQuotes();
-      populateCategories();
-      filterQuotes();
-      syncStatus.textContent = "Server updates applied (server wins)";
-      alert("New server quotes were added. Conflicts resolved.");
-    } else {
-      syncStatus.textContent = "Already up to date";
-    }
-  });
 }
 syncNowBTn.addEventListener("click", syncWithServer);
 

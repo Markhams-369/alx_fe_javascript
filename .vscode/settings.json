@@ -5,5 +5,8 @@
     "editor.defaultFormatter": "vscode.json-language-features",
     "yaml.suggest.parentSkeletonSelectedFirst": true,
     "liveServer.settings.CustomBrowser": "chrome",
-    "liveServer.settings.port": 0
+    "liveServer.settings.port": 0,
+    "[javascript]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    }
 }
