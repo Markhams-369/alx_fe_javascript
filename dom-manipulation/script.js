@@ -175,7 +175,7 @@ if (categoryFilter) categoryFilter.addEventListener("change", filterQuotes);
 // --- Server Sync Simulation ---
 const SERVER_URL = "https://jsonplaceholder.typicode.com/posts";
 
-async function fetchServerQuotes() {
+async function fetchQuotesFromServer() {
   const res = await fetch(SERVER_URL);
   const data = await res.json();
   return data.slice(0,5).map(item => ({ text: item.title, category: "Server" }));
@@ -184,7 +184,7 @@ async function fetchServerQuotes() {
 async function syncWithServer() {
   syncStatus.textContent = "Syncing with server...";
   try {
-    const serverQuotes = await fetchServerQuotes();
+    const serverQuotes = await fetchQuotesFromServer();
     let updated = false;
 
     serverQuotes.forEach(sq => {
