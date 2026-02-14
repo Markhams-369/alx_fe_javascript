@@ -2,11 +2,52 @@
     "terminal.integrated.suggest.suggestOnTriggerCharacters": true,
     "editor.tabCompletion": "on",
     "html-css-class-completion.enableEmmetSupport": true,
-    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "yaml.suggest.parentSkeletonSelectedFirst": true,
     "liveServer.settings.CustomBrowser": "chrome",
     "liveServer.settings.port": 0,
     "[javascript]": {
         "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-    }
+    },
+    "[html]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    },
+    "files.autoSave": "afterDelay",
+    "editor.wordWrap": "wordWrapColumn",
+    "workbench.colorTheme": "Bearded Theme Black & Gold",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "notebook.defaultFormatter": "esbenp.prettier-vscode",
+    "notebook.formatOnSave.enabled": true,
+    "notebook.formatOnCellExecution": true,
+    "eslint.format.enable": true,
+    "formattingToggle.affects": [
+
+        "editor.formatOnPaste",
+        "editor.formatOnSave",
+        "editor.formatOnType"
+    ],
+    "prettier.singleQuote": true,
+    "prettier.jsxSingleQuote": true,
+    "prettier.singleAttributePerLine": true,
+    "explorer.fileNesting.enabled": true,
+    "github.copilot.chat.nesFetcher": "node-fetch",
+    "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
+    "merge-conflict.autoNavigateNextConflict.enabled": true,
+    "path-intellisense.autoTriggerNextSuggestion": true,
+    "autoDocstring.startOnNewLine": true,
+    "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+    "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+    "typescript.format.placeOpenBraceOnNewLineForFunctions": true,
+
+    "workbench.iconTheme": "vs-seti",
+    "workbench.preferredDarkColorTheme": "Coder Coder Dark Theme",
+    "workbench.productIconTheme": "icons-kamekazi-dark",
+    "workbench.browser.openLocalhostLinks": true,
+    "editor.suggest.localityBonus": true,
+    "editor.suggest.preview": true,
+    "prettier.trailingComma": "es5",
+    "editor.renderWhitespace": "none",
+    "files.trimTrailingWhitespace": true
 }
