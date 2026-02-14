@@ -158,9 +158,9 @@ function importFromJSONFile(event) {
       filterQuotes();
       notification.textContent = "Quotes imported successfully!";
       setTimeout(() => notification.textContent = "", 3000);
-    } catch (err) {
+    } catch (error) {
       notification.textContent = "Error importing JSON.";
-      console.error(err);
+      console.error(error);
     }
   };
   reader.readAsText(event.target.files[0]);
@@ -179,6 +179,25 @@ async function fetchQuotesFromServer() {
   const res = await fetch(SERVER_URL);
   const data = await res.json();
   return data.slice(0,5).map(item => ({ text: item.title, category: "Server" }));
+}
+
+
+async function pushQuotesToServer(newQuotes) {
+  try {
+    const res = await fetch(SERVER_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newQuotes)
+    });
+    const data = await res.json();
+    console.log("Server response:", data);
+    notification.textContent = "New quote pushed to server!";
+    setTimeout(() => notification.textContent = "", 3000);
+  } catch (error) {
+    console.error("Error pushing quotes:", error);
+    notification.textContent = "Error sending quotes to server!";
+    setTimeout(() => notification.textContent = "", 3000);
+  }
 }
 
 async function syncWithServer() {
@@ -204,9 +223,9 @@ async function syncWithServer() {
     } else {
       syncStatus.textContent = "Already up to date";
     }
-  } catch (err) {
+  } catch (error) {
     syncStatus.textContent = "Error syncing with server";
-    console.error(err);
+    console.error(error);
   }
 }
 
